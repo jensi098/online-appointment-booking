@@ -1,0 +1,6 @@
+appointment_booking/
+├── app.py               # Flask application
+├── templates/
+│   └── index.html       # Homepage with appointment form
+└── static/
+    └── styles.css       # Styling (optional)
