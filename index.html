@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Appointment Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Schedule Your Appointment</h1>
+    </header>
+
+    <section>
+        <h2>Book a Visit (Doctor or Salon)</h2>
+        <form method="post">
+            <label>Full Name:</label>
+            <input type="text" name="name" placeholder="Your Name" required><br>
+
+            <label>Contact Number:</label>
+            <input type="tel" name="contact" placeholder="Phone Number" required><br>
+
+            <label>Date of Appointment:</label>
+            <input type="date" name="date" required><br>
+
+            <label>Time:</label>
+            <input type="time" name="time" required><br>
+
+            <label>Service Type:</label>
+            <select name="service_type" required>
+                <option value="">Select</option>
+                <option value="Doctor">Doctor Visit</option>
+                <option value="Salon">Salon Visit</option>
+            </select><br>
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Upcoming Appointments</h2>
+        {% if appointments %}
+            <ul>
+                {% for appointment in appointments %}
+                    <li>
+                        {{ appointment.name }} - {{ appointment.service_type }}  
+                        on {{ appointment.date }} at {{ appointment.time }} 
+                        (Contact: {{ appointment.contact }})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No appointments scheduled.</p>
+        {% endif %}
+    </section>
+</body>
+</html>
